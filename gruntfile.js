@@ -12,7 +12,7 @@ module.exports = function(grunt){
                     compress: true
                 },
                 files:{
-                        './dev/styles/main.min.css':'./src/styles/main.less'
+                        './dist/styles/main.min.css':'./src/styles/main.less'
                     }
             }
         },
@@ -22,14 +22,21 @@ module.exports = function(grunt){
                     './dist/scripts/main.min.js':'./src/scripts/main.js'
                 }
             }
+        },
+        htmlmin:{
+            target:{
+                files:{
+                    './dist/index.min.html':'./src/index.html'
+                }
+            }
         }
     
 
     
     });
 
-
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-uglify')
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.registerTask('default', ['less', 'uglify']);
+    grunt.registerTask('default', ['less', 'uglify', 'htmlmin']);
 }
